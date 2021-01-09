@@ -1,0 +1,49 @@
+({
+  "strNombre": "Avianca",
+  "intIdCiudad": 547
+},
+{
+  "strNombre": "Satena",
+  "intIdCiudad": 547
+},
+{
+  "strNombre": "Virgin",
+  "intIdCiudad": 107
+},
+{
+  "strNombre": "Jet",
+  "intIdCiudad": 107
+}
+//Vuelos
+{
+  "strOrigen": "Medellín-Antioquía",
+  "strDestino": "Bogota D.C-Cundidanamarca",
+  "strPrecio": "200000",
+  "intIdAerolinea": 1,
+  "N_Asientos": 100,
+  "intEstado": 1
+},
+{
+  "strOrigen": "Casanare-Meta",
+  "strDestino": "Neiva-Huila",
+  "strPrecio": "100000",
+  "intIdAerolinea": 2,
+  "N_Asientos": 60,
+  "intEstado": 2
+},
+{
+  "strOrigen": "Pasto-Nariño",
+  "strDestino": "Bogota D.C-Cundidanamarca",
+  "strPrecio": "300000",
+  "intIdAerolinea": 3,
+  "N_Asientos": 100,
+  "intEstado": 1
+},
+{
+  "strOrigen": "Cali-Valle del cauca",
+  "strDestino": "Bogota D.C-Cundidanamarca",
+  "strPrecio": "300000",
+  "intIdAerolinea": 3,
+  "N_Asientos": 100,
+  "intEstado": 1
+}

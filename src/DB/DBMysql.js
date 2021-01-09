@@ -1,4 +1,4 @@
-const mysql = require("mysql");
+const mysql = require("mysql2");
 const config = require("../config");
 
 const Con = mysql.createConnection({
@@ -7,7 +7,6 @@ const Con = mysql.createConnection({
   password: config.mysql.password,
   database: config.mysql.database,
 });
-
 module.exports = () => {
   return Con;
 };
