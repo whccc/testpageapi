@@ -4,7 +4,7 @@ use  Test;
 
 create table tblDepartamento(
     intId int primary key,
-    strNombre varchar(50)
+    strNombre varchar(100)
 );
 
 create table tblCiudad(
@@ -78,7 +78,7 @@ begin
 		set blnLogin=false;
 		select blnLogin;
     else
-		select blnLogin,tblusuario.* from tblusuario where tblUsuario.strUsuario=strUsuario and 
+		select blnLogin,tblUsuario.* from tblUsuario where tblUsuario.strUsuario=strUsuario and 
     tblUsuario.strClave=strClave;
     end if;
 
@@ -118,8 +118,8 @@ DELIMITER $$
     create procedure SP_Flight()
     begin
 
-             select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
-        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId;
+             select tblVuelo.*,tblAerolinea.strNombre from tblVuelo
+        inner join tblAerolinea on tblVuelo.intidaerolinea=tblAerolinea.intId;
 
 
     end
@@ -129,8 +129,8 @@ DELIMITER $$
     create procedure SP_FlightPorCosto()
     begin
 
-            select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
-        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId order by tblVuelo.strPrecio asc;
+            select tblVuelo.*,tblAerolinea.strNombre from tblVuelo
+        inner join tblAerolinea on tblVuelo.intidaerolinea=tblAerolinea.intId order by tblVuelo.strPrecio asc;
 
 
     end
@@ -149,11 +149,11 @@ DELIMITER $$
     create procedure SP_VuelosUsuario(in intIdUsuario int)
     begin
 
-     select tblvuelo.intId as 'intIdVuelo',tblvuelo.strOrigen,tblvuelo.strDestino,
-        tblvuelo.strPrecio,tblreservas.dtFechaReserva,tblreservas.intId as 'intIdReserva',tblvuelo.strHora,tblaerolinea.strNombre from tblreservas
-        inner join tblvuelo on tblvuelo.intId=tblreservas.intIdVuelo
-        inner join tblaerolinea on tblaerolinea.intId=tblvuelo.intIdAerolinea
-        where tblreservas.intIdUser=intIdUsuario;
+     select tblVuelo.intId as 'intIdVuelo',tblVuelo.strOrigen,tblVuelo.strDestino,
+        tblVuelo.strPrecio,tblReservas.dtFechaReserva,tblReservas.intId as 'intIdReserva',tblVuelo.strHora,tblAerolinea.strNombre from tblReservas
+        inner join tblVuelo on tblVuelo.intId=tblReservas.intIdVuelo
+        inner join tblAerolinea on tblAerolinea.intId=tblVuelo.intIdAerolinea
+        where tblReservas.intIdUser=intIdUsuario;
     end
 $$
 
@@ -161,7 +161,7 @@ DELIMITER $$
     create procedure SP_BorrarReserva(in intIdReserva int)
     begin
 
-     delete from tblreservas where intId=intIdReserva;
+     delete from tblReservas where intId=intIdReserva;
     end
 $$
 
@@ -169,8 +169,8 @@ DELIMITER $$
     create procedure SP_GetCiudadDepartamento()
     begin
         SET @counter = 0;
-         select (@counter := @counter + 1) AS 'id', concat(UPPER(tblciudad.strNombre),'-',tbldepartamento.strNombre) as 'value' from tbldepartamento
-        inner join tblciudad on tbldepartamento.intId=tblciudad.intIdDepartamento;
+         select (@counter := @counter + 1) AS 'id', concat(UPPER(tblCiudad.strNombre),'-',tblDepartamento.strNombre) as 'value' from tblDepartamento
+        inner join tblCiudad on tblDepartamento.intId=tblCiudad.intIdDepartamento;
 
     end
 $$
@@ -178,10 +178,10 @@ $$
  DELimiter $$
  create procedure SP_BuscarLugar(in strOrigen varchar(100),in strDestino varchar(100))
  begin
- select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
-        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId
-        where tblvuelo.strOrigen like CONCAT('%', strOrigen , '%') and 
-        tblvuelo.strDestino like CONCAT('%', strDestino , '%')
+ select tblVuelo.*,tblAerolinea.strNombre from tblVuelo
+        inner join tblAerolinea on tblVuelo.intidaerolinea=tblAerolinea.intId
+        where tblVuelo.strOrigen like CONCAT('%', strOrigen , '%') and 
+        tblVuelo.strDestino like CONCAT('%', strDestino , '%')
         ;
         end
         $$

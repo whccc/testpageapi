@@ -24,6 +24,7 @@ module.exports = {
           resolve(rows);
         })
         .catch((error) => {
+          console.log(error);
           reject(error);
         });
     });
