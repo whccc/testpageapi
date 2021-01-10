@@ -14,6 +14,7 @@ module.exports = {
     if (Data.blnLogin) {
       res.json({
         Success: true,
+        intId: Data.intId,
         strName: Data.strNombre,
         strLastName: Data.strApellido,
       });

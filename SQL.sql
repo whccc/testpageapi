@@ -26,6 +26,7 @@ create table tblVuelo(
     strOrigen varchar(50),
     strDestino varchar(50),
     strPrecio varchar(50),
+    strHora varchar(50),
     intIdAerolinea int,
     N_Asientos int,
     intEstado int
@@ -101,12 +102,13 @@ DELIMITER $$
           in strPrecioIN varchar(50),
           in intIdAerolineaIN int,
           in N_AsientosIN int,
-          in intEstadoIN int,)
+          in intEstadoIN int,
+          in strHoraIN varchar(50))
     begin
 
         insert into tblVuelo(strOrigen,strDestino,strPrecio,intIdAerolinea,N_Asientos,
-        intEstado) values(strOrigenIN,strDestinoIN,strPrecioIN,intIdAerolineaIN,N_AsientosIN,
-        intEstadoIN);
+        intEstado,strHora) values(strOrigenIN,strDestinoIN,strPrecioIN,intIdAerolineaIN,N_AsientosIN,
+        intEstadoIN,strHoraIN);
 
     end
 $$
@@ -116,7 +118,70 @@ DELIMITER $$
     create procedure SP_Flight()
     begin
 
-        select * from tblVuelo;
+             select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
+        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId;
+
 
     end
 $$
+
+DELIMITER $$
+    create procedure SP_FlightPorCosto()
+    begin
+
+            select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
+        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId order by tblVuelo.strPrecio asc;
+
+
+    end
+$$
+
+DELIMITER $$
+    create procedure SP_ReservarVuelo(in intIdVueloIN int,in intIdUserIN int)
+    begin
+
+   insert into tblReservas(dtFechaReserva,intIdVuelo,intIdUser) values(now(),intIdVueloIN,intIdUserIN);
+
+    end
+$$
+
+DELIMITER $$
+    create procedure SP_VuelosUsuario(in intIdUsuario int)
+    begin
+
+     select tblvuelo.intId as 'intIdVuelo',tblvuelo.strOrigen,tblvuelo.strDestino,
+        tblvuelo.strPrecio,tblreservas.dtFechaReserva,tblreservas.intId as 'intIdReserva',tblvuelo.strHora,tblaerolinea.strNombre from tblreservas
+        inner join tblvuelo on tblvuelo.intId=tblreservas.intIdVuelo
+        inner join tblaerolinea on tblaerolinea.intId=tblvuelo.intIdAerolinea
+        where tblreservas.intIdUser=intIdUsuario;
+    end
+$$
+
+DELIMITER $$
+    create procedure SP_BorrarReserva(in intIdReserva int)
+    begin
+
+     delete from tblreservas where intId=intIdReserva;
+    end
+$$
+
+DELIMITER $$
+    create procedure SP_GetCiudadDepartamento()
+    begin
+        SET @counter = 0;
+         select (@counter := @counter + 1) AS 'id', concat(UPPER(tblciudad.strNombre),'-',tbldepartamento.strNombre) as 'value' from tbldepartamento
+        inner join tblciudad on tbldepartamento.intId=tblciudad.intIdDepartamento;
+
+    end
+$$
+
+ DELimiter $$
+ create procedure SP_BuscarLugar(in strOrigen varchar(100),in strDestino varchar(100))
+ begin
+ select tblVuelo.*,tblaerolinea.strNombre from tblVuelo
+        inner join tblaerolinea on tblVuelo.intidaerolinea=tblaerolinea.intId
+        where tblvuelo.strOrigen like CONCAT('%', strOrigen , '%') and 
+        tblvuelo.strDestino like CONCAT('%', strDestino , '%')
+        ;
+        end
+        $$

@@ -16,34 +16,38 @@
 }
 //Vuelos
 {
-  "strOrigen": "Medellín-Antioquía",
-  "strDestino": "Bogota D.C-Cundidanamarca",
-  "strPrecio": "200000",
+  "strOrigen": "MEDELLÍN-ANTIOQUIA",
+  "strDestino": "BOGOTÁ D.C.-BOGOTÁ, D.C.",
+  "strPrecio": "200.000",
   "intIdAerolinea": 1,
   "N_Asientos": 100,
-  "intEstado": 1
+  "intEstado": 1,
+  "strHora":"22/02/2021 2:00pm"
 },
 {
-  "strOrigen": "Casanare-Meta",
-  "strDestino": "Neiva-Huila",
-  "strPrecio": "100000",
+  "strOrigen": "PALMIRA-VALLE DEL CAUCA",
+  "strDestino": "NEIVA-HUILA",
+  "strPrecio": "100.000",
   "intIdAerolinea": 2,
   "N_Asientos": 60,
-  "intEstado": 2
+  "intEstado": 2,
+  "strHora":"28/02/2021 3:00pm"
 },
 {
-  "strOrigen": "Pasto-Nariño",
-  "strDestino": "Bogota D.C-Cundidanamarca",
-  "strPrecio": "300000",
+  "strOrigen": "CARTAGENA-BOLÍVAR",
+  "strDestino": "IPIALES-NARIÑO",
+  "strPrecio": "150.000",
   "intIdAerolinea": 3,
   "N_Asientos": 100,
-  "intEstado": 1
+  "intEstado": 2,
+  "strHora":"15/02/2021 5:00pm"
 },
 {
-  "strOrigen": "Cali-Valle del cauca",
-  "strDestino": "Bogota D.C-Cundidanamarca",
-  "strPrecio": "300000",
+  "strOrigen": "SANTA MARTA-MAGDALENA",
+  "strDestino": "IPIALES-NARIÑO",
+  "strPrecio": "300.000",
   "intIdAerolinea": 3,
   "N_Asientos": 100,
-  "intEstado": 1
+  "intEstado": 2,
+  "strHora":"10/02/2021 6:00pm"
 }
