@@ -10,6 +10,6 @@ app.use(cors());
 
 app.use("/api", indexRouter);
 
-app.listen(server.port, () => {
+app.listen(process.env.PORT || server.port, () => {
   console.log("Server escuchando por" + server.port);
 });
