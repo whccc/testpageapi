@@ -1,6 +1,6 @@
 module.exports = {
   server: {
-    port: process.env.APP_PORT,
+    port: "5000",
     domain: "localhost",
   },
   mysql: {
