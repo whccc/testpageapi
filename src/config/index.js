@@ -4,9 +4,9 @@ module.exports = {
     domain: "localhost",
   },
   mysql: {
-    host: process.env.DB_HOST,
-    user: process.env.DB_USER,
-    database: process.env.DB_NAME,
-    password: process.env.DB_PASSWORD,
+     host: "buuksbuhrvdvllrln4xj-mysql.services.clever-cloud.com",
+    user: "uv7uac26hcwlkx8h",
+    database: "buuksbuhrvdvllrln4xj",
+    password: "9KUJI0a8TBb1Gx2yWyD7",
   },
 };
